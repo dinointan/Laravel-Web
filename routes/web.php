@@ -13,11 +13,13 @@ Route::get('/', function () {
     return view('dashboard', compact('data'));
 });
 
-
-
 Route::get('/mahasiswa', [MahasiswaController::class, 'index']);
+Route::get('/mahasiswa/tambah', [MahasiswaController::class, 'tambah']);
+Route::post('/mahasiswa/store', [MahasiswaController::class, 'store']);
 
 Route::get('/prodi', [ProdiController::class, 'index']);
+Route::get('/prodi/tambah', [ProdiController::class, 'tambah']);
+Route::post('/prodi/store', [ProdiController::class, 'store']);
 
 
 

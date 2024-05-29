@@ -31,7 +31,7 @@
 
                                 <div class="card-tools">
                                     <div class="card-tools">
-                                        <a href="tambahmahasiswa.php" class="btn btn-primary">Tambah</a>
+                                        <a href="mahasiswa/tambah" class="btn btn-primary">Tambah</a>
                                     </div>
                                 </div>
                             </div>
@@ -54,12 +54,12 @@
                                         @foreach ($mahasiswa as $m)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $m->NIM }}</td>
-                                                <td>{{ $m->Nama }}</td>
-                                                <td>{{ $m->ID_Prodi }}</td>
-                                                <td>{{ $m->Nomor_HP }}</td>
-                                                <td>{{ $m->Alamat }}</td>
-                                                <td><img src="img/{{ $m->Foto }}" width="50px"></td>
+                                                <td>{{ $m->nim }}</td>
+                                                <td>{{ $m->nama }}</td>
+                                                <td>{{ $m->prodi_id }}</td>
+                                                <td>{{ $m->nomor_hp }}</td>
+                                                <td>{{ $m->alamat }}</td>
+                                                <td><img src="{{ asset('dist/img/' . $m->foto) }}" width="50px"></td>
                                                 <td><a href="" class="btn btn-warning">Edit</a>
                                                     <a href="" class="btn btn-danger">Hapus</a>
                                                 </td>

@@ -2,7 +2,8 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-        <img src="dist/img/poliban.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <img src="{{ asset('dist/img/poliban.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+            style="opacity: .8">
         <span class="brand-text font-weight-light">Politeknik Negeri</span>
     </a>
 
@@ -10,8 +11,9 @@
     <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+
             <div class="image">
-                <img src="img/{{ $data['foto'] }}" class="img-circle elevation-2" alt="User Image">
+                <img src="{{ asset('img/' . $data['foto']) }}" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
                 <a href="#" class="d-block">{{ $data['nama'] }}
@@ -28,7 +30,7 @@
                with font-awesome or any other icon font library -->
 
                 <li class="nav-item">
-                    <a href="index.php" class="nav-link">
+                    <a href="{{ url('/') }}" class="nav-link">
                         <i class="nav-icon far fa-calendar-alt"></i>
                         <p>
                             Dashboard
@@ -37,7 +39,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="mahasiswa" class="nav-link">
+                    <a href="{{ url('mahasiswa') }}" class="nav-link">
                         <i class="nav-icon far fa-calendar-alt"></i>
                         <p>
                             Data Mahasiswa
@@ -46,7 +48,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="prodi" class="nav-link">
+                    <a href="{{ url('prodi') }}" class="nav-link">
                         <i class="nav-icon far fa-image"></i>
                         <p>
                             Data Prodi
