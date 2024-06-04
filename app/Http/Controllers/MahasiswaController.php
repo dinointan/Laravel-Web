@@ -30,21 +30,21 @@ class MahasiswaController extends Controller
     public function store(Request $request)
     {
         $mahasiswa = new Mahasiswa();
-        $mahasiswa->NIM = $request->NIM;
-        $mahasiswa->Nama = $request->Nama;
-        $mahasiswa->Nomor_HP = $request->Nomor_HP;
-        $mahasiswa->ID_Prodi = $request->ID_Prodi;
-        $mahasiswa->Alamat = $request->Alamat;
-        $mahasiswa->Password = bcrypt($request->NIM);
+        $mahasiswa->nim = $request->nim;
+        $mahasiswa->nama = $request->nama;
+        $mahasiswa->no_hp = $request->no_hp;
+        $mahasiswa->prodi_id = $request->prodi_id;
+        $mahasiswa->alamat = $request->alamat;
+        $mahasiswa->password = bcrypt($request->nim);
 
-        if ($request->Foto) {
-            $file = $request->file('Foto');
-            $path = $request->NIM;
+        if ($request->foto) {
+            $file = $request->file('foto');
+            $path = $request->nim;
             $extension = '.' . $file->getClientOriginalExtension();
             $photoUrl = $path . $extension;
             $file->move('dist/img/', $photoUrl);
 
-            $mahasiswa->Foto = $photoUrl;
+            $mahasiswa->foto = $photoUrl;
         }
 
         $mahasiswa->save();

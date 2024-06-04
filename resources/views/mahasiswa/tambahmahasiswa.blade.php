@@ -37,18 +37,18 @@
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label for="NIM">NIM</label>
-                                        <input type="text" name="NIM" class="form-control" id="NIM"
+                                        <label for="nim">NIM</label>
+                                        <input type="text" name="nim" class="form-control" id="nim"
                                             placeholder="Masukkan NIM">
                                     </div>
                                     <div class="form-group">
-                                        <label for="Nama">Nama Mahasiswa</label>
-                                        <input type="text" name="Nama" class="form-control" id="Nama"
+                                        <label for="nama">Nama Mahasiswa</label>
+                                        <input type="text" name="nama" class="form-control" id="nama"
                                             placeholder="Masukkan Nama Mahasiswa">
                                     </div>
                                     <div class="form-group">
-                                        <label for="ID_Prodi">Prodi</label>
-                                        <select name="ID_Prodi" id="ID_Prodi" class="form-control select2bs4"
+                                        <label for="prodi_id">Prodi</label>
+                                        <select name="prodi_id" id="prodi_id" class="form-control select2bs4"
                                             style="width: 100%;">
                                             <option value="">Pilih Prodi</option>
 
@@ -61,22 +61,22 @@
                                         </select>
                                     </div>
                                     <div class=" form-group">
-                                        <label for="Nomor_HP">Nomor HP</label>
-                                        <input type="text" name="Nomor_HP" class="form-control" id="Nomor_HP" place
+                                        <label for="no_hp">Nomor HP</label>
+                                        <input type="text" name="no_hp" class="form-control" id="no_hp" place
                                             holder="Masukkan Nomor HP">
                                     </div>
                                     <div class="form-group">
-                                        <label for="Alamat">Alamat</label>
-                                        <input type="text" name="Alamat" class="form-control" id="Alamat"
+                                        <label for="alamat">Alamat</label>
+                                        <input type="text" name="alamat" class="form-control" id="alamat"
                                             placeholder="Masukkan Alamat">
                                     </div>
                                     <div class="form-group">
-                                        <label for="Foto">Foto</label><br>
+                                        <label for="foto">Foto</label><br>
                                         <div class="input-group">
                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="Foto"
-                                                    name="Foto">
-                                                <label class="custom-file-label" for="Foto">Pilih Foto</label>
+                                                <input type="file" class="custom-file-input" id="foto"
+                                                    name="foto">
+                                                <label class="custom-file-label" for="foto">Pilih Foto</label>
                                             </div>
                                             <div class="input-group-append">
                                                 <span class="input-group-text">Upload</span>

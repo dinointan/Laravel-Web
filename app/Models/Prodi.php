@@ -12,6 +12,6 @@ class Prodi extends Model
     protected $table = 'prodi';
 
     protected $fillable = [
-        'Nama_Prodi'
+        'nama_prodi'
     ];
 }

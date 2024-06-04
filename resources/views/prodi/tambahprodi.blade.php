@@ -37,8 +37,8 @@
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label for="Nama_Prodi">Nama Program Studi</label>
-                                        <input type="text" name="Nama_Prodi" class="form-control" id="Nama_Prodi"
+                                        <label for="nama_prodi">Nama Program Studi</label>
+                                        <input type="text" name="nama_prodi" class="form-control" id="nama_prodi"
                                             placeholder="Masukkan Nama Data Prodi">
                                     </div>
                                 </div>

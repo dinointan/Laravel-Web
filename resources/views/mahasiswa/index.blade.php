@@ -45,9 +45,9 @@
                                             <th>Nama</th>
                                             <th>Prodi</th>
                                             <th>No Handphone</th>
-                                            <th>alamat</th>
-                                            <th>foto</th>
-                                            <th>aksi</th>
+                                            <th>Alamat</th>
+                                            <th>Foto</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -57,7 +57,7 @@
                                                 <td>{{ $m->nim }}</td>
                                                 <td>{{ $m->nama }}</td>
                                                 <td>{{ $m->prodi_id }}</td>
-                                                <td>{{ $m->nomor_hp }}</td>
+                                                <td>{{ $m->no_hp }}</td>
                                                 <td>{{ $m->alamat }}</td>
                                                 <td><img src="{{ asset('dist/img/' . $m->foto) }}" width="50px"></td>
                                                 <td><a href="" class="btn btn-warning">Edit</a>
