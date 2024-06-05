@@ -1,4 +1,5 @@
 @extends('template.main')
+
 @section('content')
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -33,17 +34,14 @@
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form action="store" method="post" enctype="multipart/form-data">
+                            <form action="{{ url("prodi/$prodi->id") }}" method="post">
+                                @method('put')
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label for="nama_prodi">Nama Program Studi</label>
-                                        <input type="text" name="nama_prodi"
-                                            class="form-control @error('nama_prodi') is-invalid @enderror" id="nama_prodi"
-                                            placeholder="Masukkan Nama Data Prodi">
-                                        @error('nama_prodi')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
+                                        <label for="namaprodi">Nama Program Studi</label>
+                                        <input type="text" name="nama_prodi" class="form-control" id="namaprodi"
+                                            value="{{ $prodi->nama_prodi }}">
                                     </div>
                                 </div>
                                 <!-- /.card-body -->

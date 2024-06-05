@@ -20,6 +20,13 @@ Route::post('/mahasiswa/store', [MahasiswaController::class, 'store']);
 Route::get('/prodi', [ProdiController::class, 'index']);
 Route::get('/prodi/tambah', [ProdiController::class, 'tambah']);
 Route::post('/prodi/store', [ProdiController::class, 'store']);
+Route::get('/prodi/{id}/edit', [ProdiController::class, 'edit']);
+Route::put('/prodi/{id}', [ProdiController::class, 'update']);
+Route::delete('/prodi/{id}', [ProdiController::class, 'destroy']);
+
+// Route::resource('/prodi', ProdiController::class);
+
+
 
 
 
