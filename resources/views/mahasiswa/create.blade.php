@@ -33,7 +33,7 @@
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form action="store" method="post" enctype="multipart/form-data">
+                            <form action="{{ url('mahasiswa') }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group">
@@ -53,8 +53,8 @@
                                             <option value="">Pilih Prodi</option>
 
                                             <?php
-                                            foreach ($dataprodi as $prodi): ?>
-                                            <option value="{{ $prodi->id }}"> {{ $prodi->nama_prodi }}</option>
+                                            foreach ($prodi as $data): ?>
+                                            <option value="{{ $data['id'] }}"> {{ $data['nama_prodi'] }}</option>
                                             <?php
                                         endforeach;
                                          ?>

@@ -21,10 +21,10 @@ class ProdiController extends Controller
 
     }
 
-    public function tambah()
+    public function create()
     {
         $data = ['nama' => "intan", 'foto' => 'E020322098.jpeg'];
-        return view('prodi.tambahprodi', compact(['data']));
+        return view('prodi.create', compact(['data']));
     }
 
     public function store(Request $request)

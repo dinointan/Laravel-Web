@@ -31,7 +31,7 @@
 
                                 <div class="card-tools">
                                     <div class="card-tools">
-                                        <a href="mahasiswa/tambah" class="btn btn-primary">Tambah</a>
+                                        <a href="/mahasiswa/create" class="btn btn-primary">Tambah</a>
                                     </div>
                                 </div>
                             </div>
@@ -60,8 +60,15 @@
                                                 <td>{{ $m->no_hp }}</td>
                                                 <td>{{ $m->alamat }}</td>
                                                 <td><img src="{{ asset('dist/img/' . $m->foto) }}" width="50px"></td>
-                                                <td><a href="" class="btn btn-warning">Edit</a>
-                                                    <a href="" class="btn btn-danger">Hapus</a>
+                                                <td><a href="{{ url("mahasiswa/>$m->nim/edit") }}"
+                                                        class="btn btn-warning">Edit</a>
+                                                    <form action="{{ url("mahasiswa/$m->nim") }}" method="post"
+                                                        class="d-inline">
+                                                        @method('delete')
+                                                        @csrf
+                                                        <button class="btn btn-danger"
+                                                            onclick="return confrm('Yakin ingin dihapus?')">Hapus</button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                         @endforeach

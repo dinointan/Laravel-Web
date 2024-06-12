@@ -3,53 +3,93 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mahasiswa;
+use App\Models\Prodi;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Image;
+use Illuminate\Support\Facades\Hash;
 
 class MahasiswaController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
-        $data = ['nama' => "intan", 'foto' => 'E020322098.jpeg'];
-        $mahasiswa = DB::table('mahasiswa')->get();
+        //
+        $data = ['nama' => 'Intan', 'foto' => 'E020322098.jpeg'];
+        $mahasiswa = Mahasiswa::get();
         return view('mahasiswa.index', compact(['data', 'mahasiswa']));
     }
-    public function show($id)
-    {
 
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+        $data = ['nama' => 'Intan', 'foto' => 'E020322098.jpeg'];
+        $prodi = Prodi::all();
+        return view('mahasiswa.create', compact(['data', 'prodi']));
     }
 
-    public function tambah()
-    {
-        $data = ['nama' => "intan", 'foto' => 'E020322098.jpeg'];
-        $dataprodi = DB::table('prodi')->get();
-        return view('mahasiswa.tambahmahasiswa', compact(['data', 'dataprodi']));
-    }
-
+    /**
+     * Store a newly created resource in storage.
+     */
     public function store(Request $request)
     {
-        $mahasiswa = new Mahasiswa();
-        $mahasiswa->nim = $request->nim;
-        $mahasiswa->nama = $request->nama;
-        $mahasiswa->no_hp = $request->no_hp;
-        $mahasiswa->prodi_id = $request->prodi_id;
-        $mahasiswa->alamat = $request->alamat;
-        $mahasiswa->password = bcrypt($request->nim);
+        //
+        $validateData = $request->validate(
+            [
+                'nim' => 'required|unique:mahasiswa|max:255',
+                'nama' => '',
+                'prodi_id' => '',
+                'no_hp' => '',
+                'alamat' => '',
+            ],
+            [
+                'nim.required' => 'NIM harus diisi',
+                'nim.unique' => 'NIM sudah ada',
+                'nim.max' => 'NIM maksimal 255 karakter',
+            ]
+        );
+        $validateData['foto'] = $validateData['nim'] . '.jpeg';
+        $validateData['password'] = Hash::make($validateData['nim']);
+        Mahasiswa::create($validateData);
+        return redirect('/mahasiswa');
+    }
 
-        if ($request->foto) {
-            $file = $request->file('foto');
-            $path = $request->nim;
-            $extension = '.' . $file->getClientOriginalExtension();
-            $photoUrl = $path . $extension;
-            $file->move('dist/img/', $photoUrl);
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
+    }
 
-            $mahasiswa->foto = $photoUrl;
-        }
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+        $data = ['nama' => 'Intan', 'foto' =>'E020322098.jpeg'];
+        $mahasiswa = Mahasiswa::find($id);
+        $prodi = Prodi::all();
+        return view('mahasiswa.edit', compact(['data', 'mahasiswa', 'prodi']));
+    }
 
-        $mahasiswa->save();
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
+    }
 
-        return redirect('mahasiswa');
-
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
     }
 }

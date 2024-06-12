@@ -33,7 +33,7 @@
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form action="store" method="post" enctype="multipart/form-data">
+                            <form action={{ url('prodi') }} method="post">
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group">

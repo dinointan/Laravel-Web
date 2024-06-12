@@ -30,7 +30,7 @@
                                 <h3 class="card-title">Data Program Studi</h3>
 
                                 <div class="card-tools">
-                                    <a href="prodi/tambah" class="btn btn-primary">Tambah</a>
+                                    <a href="/prodi/create" class="btn btn-primary">Tambah</a>
 
                                 </div>
                             </div>
