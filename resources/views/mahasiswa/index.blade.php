@@ -60,14 +60,14 @@
                                                 <td>{{ $m->no_hp }}</td>
                                                 <td>{{ $m->alamat }}</td>
                                                 <td><img src="{{ asset('dist/img/' . $m->foto) }}" width="50px"></td>
-                                                <td><a href="{{ url("mahasiswa/>$m->nim/edit") }}"
+                                                <td><a href="{{ url("mahasiswa/$m->nim/edit") }}"
                                                         class="btn btn-warning">Edit</a>
                                                     <form action="{{ url("mahasiswa/$m->nim") }}" method="post"
                                                         class="d-inline">
                                                         @method('delete')
                                                         @csrf
                                                         <button class="btn btn-danger"
-                                                            onclick="return confrm('Yakin ingin dihapus?')">Hapus</button>
+                                                            onclick="return confirm('Yakin ingin dihapus?')">Hapus</button>
                                                     </form>
                                                 </td>
                                             </tr>

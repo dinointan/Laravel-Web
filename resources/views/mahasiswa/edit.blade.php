@@ -1,5 +1,4 @@
-@extends()
-
+@extends('template.main')
 @section('content')
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -18,83 +17,96 @@
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
         </div>
+        <!-- /.content-header -->
 
+        <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                <!-- left column -->
-                <div class="col-md-12">
-                    <!-- jquery validation -->
-                    <div class="card card-primary">
-                        <div class="card-header">
-                            <h3 class="card-title">Edit Mahasiswa</h3>
+
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-12">
+                        <!-- jquery validation -->
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">Edit Mahasiswa</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <form action="{{ url('mahasiswa/' . $mahasiswa->nim) }}" method="post"
+                                enctype="multipart/form-data">
+                                @method('put')
+                                @csrf
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="nim">NIM</label>
+                                        <input type="text" name="nim" class="form-control" id="nim"
+                                            placeholder="Masukkan NIM" value="{{ $mahasiswa->nim }}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="nama">Nama Mahasiswa</label>
+                                        <input type="text" name="nama" class="form-control" id="nama"
+                                            placeholder="Masukkan Nama Mahasiswa" value="{{ $mahasiswa->nama }}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="prodi_id">Prodi</label>
+                                        <select name="prodi_id" id="prodi_id" class="form-control select2bs4"
+                                            style="width: 100%;">
+                                            @foreach ($prodi as $p)
+                                                <option value="{{ $p['id'] }}">
+                                                    {{ $p['id'] == $mahasiswa->prodi_id ? 'SELECTED' : '' }}{{ $p['nama_prodi'] }}
+                                                </option>
+                                            @endforeach
+                                            ?>
+                                        </select>
+                                    </div>
+                                    <div class=" form-group">
+                                        <label for="no_hp">Nomor HP</label>
+                                        <input type="text" name="no_hp" class="form-control" id="no_hp" place
+                                            holder="Masukkan Nomor HP" value="{{ $mahasiswa->no_hp }}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="alamat">Alamat</label>
+                                        <input type="text" name="alamat" class="form-control" id="alamat"
+                                            placeholder="Masukkan Alamat" value="{{ $mahasiswa->alamat }}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="foto">Foto</label><br>
+                                        <img src="{{ asset('dist/img/' . $mahasiswa->foto) }}" alt="">
+                                        <div class="input-group">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="foto"
+                                                    name="foto">
+                                                <label class="custom-file-label" for="foto">Pilih Foto</label>
+                                            </div>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">Upload</span>
+                                            </div>
+                                        </div>
+
+                                        <!-- /.card-body -->
+                                        <button type="submit" class="btn btn-primary mt-4">Submit</button>
+                            </form>
                         </div>
-                        <!-- /.card-header -->
-                        <!-- form start -->
-                        <form action="{{ url("mahasiswa/$mahasiswa->nim") }}" method="post" enctype="multipart/form-data">
-                            @method('put')
-                            @csrf
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <label for="nimmahasiswa">NIM</label>
-                                    <input type="text" name="nimmahasiswa" class="form-control" id="nim"
-                                        placeholder="Masukan NIM Mahasiswa" value="{{ $mahasiswa->nim }}" readonly>
-                                </div>
-                                <div class="form-group">
-                                    <label for="namamahasiswa">Nama Mahasiswa</label>
-                                    <input type="text" name="nama" class="form-control" id="nama"
-                                        placeholder="Masukan Nama Mahasiswa" value="{{ $mahasiswa->nama }}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="prodi">Program Studi</label>
-                                    <select class="from-control select2bs4" style="width: 100%" id="prodi"
-                                        name="prodi">
-                                        <option value="">Pilih Prodi</option>
-                                        @foreach ($prodi as $data)
-                                            <option value="{{ $data['id'] }}">
-                                                {{ $data['id'] == $mahasiswa->prodi_id ? 'SELECTED' : '' }}>{{ $data['nama_prodi'] }}
-                                            </option>
-                                        @endforeach
-                                        </option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="nohp">Nomor HP</label>
-                                    <input type="text" name="no_hp" class="form-control" id="nohp"
-                                        placeholder="Masukan No HP" value="{{ $mahasiswa->no_hp }}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="alamat">Alamat</label>
-                                    <input type="text" name="alamat" class="form-control" id="alamat"
-                                        placeholder="Masukan Alamat" value="{{ $mahasiswa->alamat }}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="photo">Foto</label>
-                                    <input type="file" name="photo" class="container-fluid" id="photo"
-                                        name="photo" accept="image/*">
-                                </div>
-                            </div>
-                            <!-- /.card-body -->
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </div>
-                        </form>
+                        <!-- /.card -->
                     </div>
-                    <!-- /.card -->
-                </div>
-                <!--/.col (left) -->
-                <!-- right column -->
-                <div class="col-md-6">
+                    <!--/.col (left) -->
+                    <!-- right column -->
+                    <div class="col-md-6">
 
+                    </div>
+                    <!--/.col (right) -->
                 </div>
-                <!--/.col (right) -->
-            </div>
-            <!-- /.row -->
-            <!-- /.row -->
+                <!-- /.row -->
+                <!-- Main row -->
+                <div class="row">
+                    <!-- Left col -->
+                    <section class="col-lg-7 connectedSortable">
+
+                        <!-- /.card-footer -->
+                </div>
+
+        </section>
+        <!-- right col -->
     </div>
-    <!-- /.row -->
-    <!-- Main row -->
-
-    <!-- /.row (main row) -->
-    </div><!-- /.container-fluid -->
-    </section>
 @endsection
