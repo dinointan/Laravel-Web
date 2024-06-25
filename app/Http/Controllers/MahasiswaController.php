@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Models\Mahasiswa;
 use App\Models\Prodi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class MahasiswaController extends Controller
 {
@@ -50,12 +52,14 @@ class MahasiswaController extends Controller
                 'nim.max' => 'NIM maksimal 255 karakter',
             ]
         );
-        // if ($request->hasFile('foto')) {
-        //     $file = $request->file('foto');
-        //     $filename = $validateData['nim'] . '.' . $file->getClientOriginalExtension();
-        //     $file->storeAs('public/dist/img', $filename);
-        // }
-        $validateData['foto'] = $validateData['nim'] . '.jpeg';
+        // Proses upload foto
+        if ($request->hasFile('foto')) {
+            $file = $request->file('foto');
+            $filename = $validateData['nim'] . '.' . $file->getClientOriginalExtension();
+            $destinationPath = public_path('/dist/img');
+            $file->move($destinationPath, $filename);
+            $validateData['foto'] = $validateData['nim'] . '.' . $file->getClientOriginalExtension();
+        }
         $validateData['password'] = Hash::make($validateData['nim']);
         Mahasiswa::create($validateData);
         return redirect('/mahasiswa');
@@ -97,9 +101,31 @@ class MahasiswaController extends Controller
                 'nim.required' => 'NIM harus diisi',
                 'nim.unique' => 'NIM sudah ada',
                 'nim.max' => 'NIM maksimal 255 karakter',
+            ],
+            [
+                'nama_required' => 'Nama harus diisi',
+                'prodi_id_required' => 'Prodi harus diisi',
+                'no_hp_required' => 'No HP harus diisi',
+                'alamat_required' => 'Alamat harus diisi',
+                'foto.image' => 'Tolong upload file foto',
+                'foto.max' => 'ukuran foto maksimal 2'
             ]
         );
-        $ValidateData['foto'] = $ValidateData['nim'] . '.jpeg';
+
+        $mahasiswa = Mahasiswa::find($id);
+        // Proses upload foto jika ada file foto baru
+        if ($request->hasFile('foto')) {
+            // Hapus foto lama jika ada
+            if ($mahasiswa->foto) {
+                Storage::delete('public/dist/img/' . $mahasiswa->foto);
+            }
+            // Simpan foto baru
+            $file = $request->file('foto');
+            $filename = $ValidateData['nim'] . '.' . $file->getClientOriginalExtension();
+            $destinationPath = public_path('/dist/img');
+            $file->move($destinationPath, $filename);
+            $ValidateData['foto'] = $filename;
+        }
         $ValidateData['password'] = Hash::make($ValidateData['nim']);
         Mahasiswa::where('nim', $id)->update($ValidateData);
         return redirect('/mahasiswa');

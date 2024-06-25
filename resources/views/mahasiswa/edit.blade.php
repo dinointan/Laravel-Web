@@ -72,7 +72,8 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="foto">Foto</label><br>
-                                        <img src="{{ asset('dist/img/' . $mahasiswa->foto) }}" alt="">
+                                        <img style="object-fit: cover" width="300px" height="300px"
+                                            src="{{ asset('dist/img/' . $mahasiswa->foto) }}" alt="">
                                         <div class="input-group">
                                             <div class="custom-file">
                                                 <input type="file" class="custom-file-input" id="foto"

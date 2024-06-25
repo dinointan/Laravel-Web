@@ -40,7 +40,7 @@ class DatabaseSeeder extends Seeder
         Mahasiswa::create([
             'nim' => 'E020322097',
             'nama' => 'Intan',
-            'no_hp' =>'089519043831',
+            'no_hp' => '089519043831',
             'alamat' => 'Jalan Perumnas',
             'foto' => 'E020322098.jpeg',
             'password' => '123',
