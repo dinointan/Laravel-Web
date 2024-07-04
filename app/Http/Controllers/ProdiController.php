@@ -40,6 +40,7 @@ class ProdiController extends Controller
             ]
         );
         Prodi::create($validateData);
+        flash()->success('Data Berhasil Di tambah`');
         return redirect('prodi');
     }
 
@@ -63,12 +64,14 @@ class ProdiController extends Controller
             ]
         );
         Prodi::where('id', $id)->update($validateData);
+        flash()->success('Data Berhasil Di edit');
         return redirect('/prodi');
     }
 
     public function destroy(string $id)
     {
         Prodi::destroy($id);
+        flash()->success('Data Berhasil Dihapus');
         return redirect('/prodi');
     }
 

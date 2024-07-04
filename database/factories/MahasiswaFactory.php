@@ -24,8 +24,7 @@ class MahasiswaFactory extends Factory
             'no_hp' => fake()->phoneNumber(),
             'alamat' => fake()->address(),
             'foto' => fake()->regexify('[A-E]{1}[0-9]{9}') . '.jpeg',
-            'password' => Hash::make('password'),
-            'prodi_id' => mt_rand(1,12)
+            'prodi_id' => mt_rand(1, 12)
         ];
     }
 }

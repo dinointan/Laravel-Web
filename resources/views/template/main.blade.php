@@ -37,7 +37,7 @@
     <div class="wrapper">
 
         <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light" style="z-index: 0">
             <!-- Left navbar links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -56,9 +56,12 @@
             <ul class="navbar-nav ml-auto">
 
                 <li class="nav-item">
-                    <a class="nav-link" href="logout.php">
-                        Logout <i class="fas fa-sign-out-alt"></i>
-                    </a>
+                    <form action="/logout" method="post">
+                        @csrf
+                        <button type="submit" class="btn- btn-link">
+                            Logout <i class="fas fa-sign-out-alt"></i>
+                        </button>
+                    </form>
                 </li>
 
             </ul>

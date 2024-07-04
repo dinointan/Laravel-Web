@@ -19,7 +19,6 @@ class Mahasiswa extends Model
         'no_hp',
         'alamat',
         'prodi_id',
-        'password',
         'foto'
     ];
 }

@@ -62,6 +62,7 @@ class MahasiswaController extends Controller
         }
         $validateData['password'] = Hash::make($validateData['nim']);
         Mahasiswa::create($validateData);
+        flash()->success('Data Berhasil Ditambahkan');
         return redirect('/mahasiswa');
     }
 
@@ -119,15 +120,17 @@ class MahasiswaController extends Controller
             if ($mahasiswa->foto) {
                 Storage::delete('public/dist/img/' . $mahasiswa->foto);
             }
-            // Simpan foto baru
-            $file = $request->file('foto');
-            $filename = $ValidateData['nim'] . '.' . $file->getClientOriginalExtension();
-            $destinationPath = public_path('/dist/img');
-            $file->move($destinationPath, $filename);
-            $ValidateData['foto'] = $filename;
+            $ValidateData['foto'] = $request->file('foto')->store('img');
         }
-        $ValidateData['password'] = Hash::make($ValidateData['nim']);
         Mahasiswa::where('nim', $id)->update($ValidateData);
+        flash()->success('Data Berhasil Diedit');
+        // Simpan foto baru
+        //     $file = $request->file('foto');
+        //     $filename = $ValidateData['nim'] . '.' . $file->getClientOriginalExtension();
+        //     $destinationPath = public_path('/dist/img');
+        //     $file->move($destinationPath, $filename);
+        //     $ValidateData['foto'] = $filename;
+        // }
         return redirect('/mahasiswa');
     }
 
@@ -136,7 +139,9 @@ class MahasiswaController extends Controller
      */
     public function destroy(string $id)
     {
-        Mahasiswa::destroy($id);
+        $mahasiswa =
+            Mahasiswa::destroy($id);
+        flash()->success("Data Berhasil Dihapus");
         return redirect('/mahasiswa');
     }
 }
